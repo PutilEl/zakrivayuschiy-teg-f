@@ -98,7 +98,7 @@
   font-weight: inherit;
   font-size: 14px;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-shadow: 0 0 1px var(--shadow-color, #fff);
   mix-blend-mode: hard-light;
@@ -167,7 +167,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 }
 
 /*Кнопка*/
@@ -326,7 +326,7 @@
   font-weight: inherit;
   font-size: 14px;
   line-height: 90%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   mix-blend-mode: difference;
 }
 
