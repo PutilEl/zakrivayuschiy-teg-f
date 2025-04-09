@@ -16,9 +16,9 @@
   font-family: var(--font-family-regular, sans-serif);
   font-variation-settings: "wght" var(--font-weight-regular, 400);
   line-height: normal;
-  color: var(--text-color, #000);
-  background-color: var(--background-color, #fff);
-  background-image: var(--background-image);
+  color: var(--page-text-color, #000);
+  background-color: var(--page-background-color, #fff);
+  background-image: var(--page-background-image);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -27,7 +27,6 @@
   margin: 0 auto;
   inline-size: var(--card-inline-size, min(100%, 700px));
 }
-
 
 /*header*/
 .header {
@@ -40,8 +39,9 @@
   align-items: center;
   padding: 128px 120.5px;
   gap: 20px;
-  background-color: var(--background-color, #fff);
-  border: 2px solid var(--border, #000);
+  color: var(--header-text-color, #000);
+  background-color: var(--header-background-color, #fff);
+  border: 2px solid var(--header-border, #000);
   font-family: var(--font-family-accent, fantasy);
   font-weight: inherit;
   line-height: normal;
@@ -68,24 +68,24 @@
 
 .article {
   display: grid;
-  background-color: var(--background-color, #fff);
-  color: inherit;
-  border: 2px solid var(--border, #000);
+  background-color: var(--article-background-color, #fff);
+  color: var(--article-text-color, #000);
+  border: 2px solid var(--article-border, #000);
 }
 
 .article-block__title {
-  border-block-end: 2px solid var(--text-color, #000);
-  padding-inline-start: 10px;
-  padding-block: 3px;
+  padding-inline: 10px;
+  padding-block: 5px;
   font-size: 18px;
   line-height: normal;
   font-variation-settings: "wght" var(--font-weight-accent, 700);
+  border-bottom: 2px solid var(--article-border, #000);
 }
 
 .article-block__img {
   position: relative;
   z-index: 0;
-  overflow: hidden;
+  border-bottom: 2px solid var(--article-border, #000);
 }
 
 .article-block__img-label {
@@ -104,12 +104,12 @@
   mix-blend-mode: hard-light;
 }
 
-@supports   (-webkit-text-stroke: 1px var(--background-color, #fff)) or
-(text-stroke: 1px var(--background-color, #fff)) {
+@supports (-webkit-text-stroke: 1px var(--shadow-color, #fff)) or
+  (text-stroke: 1px var(--shadow-color, #fff)) {
   .article-block__img-label {
     text-shadow: none;
-    -webkit-text-stroke: 1px var(--background-color, #fff);
-    text-stroke: 1px var(--background-color, #fff);
+    -webkit-text-stroke: 1px var(--shadow-color, #fff);
+    text-stroke: 1px var(--shadow-color, #fff);
   }
 }
 
@@ -150,15 +150,21 @@
 }
 
 .article__description {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   margin-inline: 25px;
-  margin-block-start: 25px;
+  margin-block: 25px;
   gap: 25px;
 }
 
 .article__text {
-  font-family: inherit;
-  font-weight: inherit;
+  display: grid;
+  gap: 27px;
+}
+
+.article__text-block {
+  font-family: var(--font-family-regular, sans-serif);
+  font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   letter-spacing: 0%;
@@ -169,7 +175,6 @@
   display: flex;
   margin-inline: auto 0;
   max-block-size: 38px;
-  margin-block-end: 25px;
 }
 
 .card__icon-button {
@@ -186,7 +191,7 @@
 }
 
 .card__icon-button:focus-visible {
-  border: 2px solid var(--border, #000);
+  border: 2px solid var(--card-button-border, #000);
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
@@ -219,7 +224,7 @@
 }
 
 .like-icon.is-liked .contour {
-  fill: #FF0000;
+  fill: var(--heart-fill, #ff0000);
   transition-delay: 0.06s;
   transition-duration: 0.3s;
 }
@@ -231,13 +236,13 @@
 }
 
 .like-icon:active .main-body {
-  fill: #FF0000;
+  fill: var(--heart-fill, #ff0000);
   transition-delay: 0.05s;
   transition-duration: 0.3s;
 }
 
 .like-icon.is-liked .main-body {
-  fill: #FF0000;
+  fill: var(--heart-fill, #ff0000);
   transition-delay: 0.05s;
   transition-duration: 0.3s;
 }
@@ -249,13 +254,13 @@
 }
 
 .like-icon:active .core {
-  fill: #FF0000;
+  fill: var(--heart-fill, #ff0000);
   transition-delay: 0s;
   transition-duration: 0.3s;
 }
 
 .like-icon.is-liked .core {
-  fill: #FF0000;
+  fill: var(--heart-fill, #ff0000);
   transition-delay: 0s;
   transition-duration: 0.3s;
 }
@@ -278,17 +283,17 @@
 
 .button {
   position: relative;
-  border: 2px solid var(--border, #000);
+  border: 2px solid var(--card-button-border, #000);
   padding: 0;
-  background-color: var(--background-color, #fff);
+  background-color: var(--card-button-bg-color, #fff);
   cursor: pointer;
 }
 
 .button::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
-  background-color: var(--text-color, #000);
+  background-color: var(--card-button-after-bg-color, #000);
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
   transform: scaleX(0);
@@ -304,7 +309,7 @@
 }
 
 .button:focus-visible {
-  box-shadow: 2px 2px 0 0 var(--border, #000);
+  box-shadow: 2px 2px 0 0 var(--card-button-shadow, #000);
   transition-duration: 0.3s;
 }
 
@@ -316,9 +321,9 @@
 .button__text {
   position: relative;
   z-index: 1;
-  color: var(--background-color, #fff);
+  color: var(--card-button-after-text-color, #fff);
   font-family: var(--font-family-accent, fantasy);
-  font-weight: 400;
+  font-weight: inherit;
   font-size: 14px;
   line-height: 90%;
   letter-spacing: 0%;
@@ -326,5 +331,65 @@
 }
 
 /*footer*/
+.footer {
+  margin-block: 50px 103px;
+}
 
+.save-button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  max-inline-size: 83vw;
+}
 
+.icon {
+  width: 21px;
+}
+
+.icon-big {
+  width: 39px;
+}
+
+.modal__button {
+  grid-column: 1 / -1;
+  text-transform: uppercase;
+  inline-size: 100%;
+}
+
+.modal[open] {
+  max-inline-size: 353px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  row-gap: 30px;
+  column-gap: clamp(12px, 2vw, 20px);
+  padding: 30px;
+  color: var(--modal-text-color, #000);
+  font-family: var(--font-family-accent, fantasy);
+  font-weight: inherit;
+  text-transform: uppercase;
+  background-color: var(--modal-background-color, #fff);
+}
+
+.modal__title {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.modal::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+@media (width <= 375px) {
+  .header__container {
+    padding: 120px 14px;
+  }
+
+  .icon {
+    width: 28px;
+  }
+}
